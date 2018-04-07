@@ -17,8 +17,8 @@ def login():
 
 @app.route('/users/register', methods = ['POST'])
 def register():
-    username = request.args.get('username')
-    password = request.args.get('password')
+    username = request.form.get('username')
+    password = request.form.get('password')
     user_id = um.create_account(username, password)
     return jsonify(
         user_id=user_id
@@ -26,11 +26,11 @@ def register():
 
 @app.route('/reviews/save', methods = ['POST'])
 def save_review():
-    user_id = request.args.get('user_id')
-    review = request.args.get('review')
-    grade = request.args.get('grade')
-    major = request.args.get('major')
-    course = request.args.get('course')
+    user_id = request.form.get('user_id')
+    review = request.form.get('review')
+    grade = request.form.get('grade')
+    major = request.form.get('major')
+    course = request.form.get('course')
     rm.save_review(major, course, review, user_id)
     um.add_grade(user_id, major, course, grade)
     return "OK"
@@ -53,8 +53,8 @@ def obtain_user_info():
 
 @app.route('/users/bio', methods = ['POST'])
 def set_bio():
-    user_id = request.args.get('user_id')
-    bio = request.args.get('bio')
+    user_id = request.form.get('user_id')
+    bio = request.form.get('bio')
     um.add_bio(user_id, bio)
     return "OK"
 
