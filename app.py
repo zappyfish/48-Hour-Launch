@@ -58,5 +58,11 @@ def set_bio():
     um.add_bio(user_id, bio)
     return "OK"
 
+@app.route('/majors/obtain', methods = ['get'])
+def get_majors():
+    return jsonify(
+        majors=rm.getmajors()
+    )
+
 if __name__ == "__main__":
     app.run()

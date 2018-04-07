@@ -22,3 +22,9 @@ class ReviewManager:
         for review in reviews.each():
             review_dict[review.key()] = review.val()
         return review_dict
+
+    def get_majors(self):
+        return self.firebase.database().child("all_majors").get().val()
+
+    def add_major(self, major):
+        self.firebase.database().child("all_majors").child(major).set(major)
