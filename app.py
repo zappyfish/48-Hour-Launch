@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
 from reviews import ReviewManager
+from users import UserManager
 
 rm = ReviewManager()
+um = UserManager()
 
 app = Flask(__name__)
 
