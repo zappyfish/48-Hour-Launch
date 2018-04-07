@@ -14,28 +14,47 @@ def login():
     )
 
 @app.route('/users/register', methods = ['POST'])
+def register():
     username = request.args.get('username')
     password = request.args.get('password')
     user_id = um.create_account(username, password)
-    if user_id != 0:
-        return jsonify(
-            user_id=user_id
-        )
-    else:
-        return jsonify(
-            user_id=0
-        )
+    return jsonify(
+        user_id=user_id
+    )
 
 @app.route('/reviews/save', methods = ['POST'])
+def save_review():
     user_id = request.args.get('user_id')
-    req
+    review = request.args.get('review')
+    grade = request.args.get('grade')
+    major = request.args.get('major')
+    course = request.args.get('course')
+    rm.save_review(major, course, review, user_id)
+    um.add_grade(user_id, major, course, grade)
     return "OK"
 
 @app.route('/reviews/obtain', methods = ['GET'])
-    class_reviews = rm.get_reviews()
+def obtain_reviews():
+    major = request.args.get('major')
+    course = request.args.get('course')
+    class_reviews = rm.get_reviews(major, course)
     return jsonify(
         reviews=class_reviews
     )
+
+@app.route('/users/info', methods = ['GET'])
+def obtain_user_info():
+    user_id = request.args.get('user_id')
+    return jsonify(
+        info=um.get_user_info(user_id)
+    )
+
+@app.route('/users/bio', methods = ['POST'])
+def set_bio():
+    user_id = request.args.get('user_id')
+    bio = request.args.get('bio')
+    um.add_bio(user_id, bio)
+    return "OK"
 
 if __name__ == "__main__":
     app.run()

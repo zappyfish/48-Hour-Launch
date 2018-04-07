@@ -18,7 +18,7 @@ class UserManager:
     def add_grade(self, user_id, major, course, grade):
         self.firebase.database().child("users").child(user).child(major).child(course).set(grade)
 
-    def get_user_info(self, user):
+    def get_user_info(self, user_id):
         return self.firebase.database().child("users").child(user_id).get().val()
 
     def login(self, username, password):
@@ -39,3 +39,6 @@ class UserManager:
             self.firebase.database().child("login_info").child(username).child("user_id").set(user_id)
             self.firebase.database().child("login_info").child(username).child("password").set(password)
             return user_id
+
+    def add_bio(self, user_id, bio):
+        self.firebase.database().child("users").child(user_id).child("bio").set(bio)
