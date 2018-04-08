@@ -38,7 +38,8 @@ def save_review():
     year = request.form.get('year')
     study_hours = request.form.get('study_hours')
     code = request.form.get('code')
-    rm.save_review(major, course, review, grade, instructor, difficulty, learning, semester, year, study_hours, code, user_id)
+    workload = request.form.get('workload')
+    rm.save_review(major, course, review, grade, instructor, difficulty, learning, semester, year, study_hours, code, workload, user_id)
     um.add_grade(user_id, major, course, grade)
     return "OK"
 

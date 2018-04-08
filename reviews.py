@@ -13,7 +13,7 @@ class ReviewManager:
     def __init__(self):
         self.firebase = pyrebase.initialize_app(self.config)
 
-    def save_review(self, major, course, review, grade, instructor, difficulty, learning, semester, year, study_hours, code, user_id):
+    def save_review(self, major, course, review, grade, instructor, difficulty, learning, semester, year, study_hours, code, workload, user_id):
         self.firebase.database().child("reviews").child("all_majors").child(major).child("courses").child(code).child("reviews").child(user_id).child("course").set(course)
         self.firebase.database().child("reviews").child("all_majors").child(major).child("courses").child(code).child("reviews").child(user_id).child("major").set(major)
         self.firebase.database().child("reviews").child("all_majors").child(major).child("courses").child(code).child("reviews").child(user_id).child("review").set(review)
@@ -25,6 +25,7 @@ class ReviewManager:
         self.firebase.database().child("reviews").child("all_majors").child(major).child("courses").child(code).child("reviews").child(user_id).child("year").set(year)
         self.firebase.database().child("reviews").child("all_majors").child(major).child("courses").child(code).child("reviews").child(user_id).child("study_hours").set(study_hours)
         self.firebase.database().child("reviews").child("all_majors").child(major).child("courses").child(code).child("reviews").child(user_id).child("code").set(code)
+        self.firebase.database().child("reviews").child("all_majors").child(major).child("courses").child(code).child("reviews").child(user_id).child("workload").set(workload)
 
     def get_reviews(self, major, course):
         reviews = self.firebase.database().child("reviews").child("all_majors").child(major).child("courses").child(course).child("reviews").get()
