@@ -31,7 +31,14 @@ def save_review():
     grade = request.form.get('grade')
     major = request.form.get('major')
     course = request.form.get('course')
-    rm.save_review(major, course, review, user_id)
+    instructor = request.form.get('instructor')
+    difficulty = request.form.get('difficulty')
+    learning = request.form.get('learning')
+    semester = request.form.get('semester')
+    year = request.form.get('year')
+    study_hours = request.form.get('study_hours')
+    code = request.form.get('code')
+    rm.save_review(major, course, review, grade, instructor, difficulty, learning, semester, year, study_hours, code, user_id)
     um.add_grade(user_id, major, course, grade)
     return "OK"
 
@@ -46,7 +53,7 @@ def obtain_reviews():
 
 @app.route('/users/info', methods = ['GET'])
 def obtain_user_info():
-    user_id = request.args.get('user_id')
+    user_id = float(request.args.get('user_id'))
     return jsonify(
         info=um.get_user_info(user_id)
     )
