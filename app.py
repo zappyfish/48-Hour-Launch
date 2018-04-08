@@ -40,7 +40,7 @@ def save_review():
     code = request.form.get('code')
     workload = request.form.get('workload')
     rm.save_review(major, course, review, grade, instructor, difficulty, learning, semester, year, study_hours, code, workload, user_id)
-    um.add_grade(user_id, major, course, grade)
+    um.add_grade(user_id, major, code, grade)
     return "OK"
 
 @app.route('/reviews/obtain', methods = ['GET'])
