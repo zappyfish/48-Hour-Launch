@@ -68,7 +68,7 @@ def get_majors():
 def get_classes():
     major = request.args.get('major')
     return jsonify(
-        classes=rm.get_classes(major)
+        classes=dict(rm.get_classes(major))
     )
 
 if __name__ == "__main__":
