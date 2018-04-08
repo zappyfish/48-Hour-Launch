@@ -61,7 +61,7 @@ def set_bio():
 @app.route('/majors/obtain', methods = ['get'])
 def get_majors():
     return jsonify(
-        majors=rm.getmajors()
+        majors=rm.get_majors()
     )
 
 if __name__ == "__main__":
