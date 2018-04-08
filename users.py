@@ -43,6 +43,6 @@ class UserManager:
     def add_bio(self, user_id, bio):
         self.firebase.database().child("users").child(user_id).child("bio").set(bio)
 
-    def add_major_minor(self, user_id, major, minor):
+    def set_major_minor(self, user_id, major, minor):
         self.firebase.database().child("users").child(user_id).child("major").set(major)
         self.firebase.database().child("users").child(user_id).child("minor").set(minor)
