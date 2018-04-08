@@ -64,7 +64,7 @@ def set_majors_minors():
     user_id = request.form.get('user_id')
     major = request.form.get('major')
     minor = request.form.get('minor')
-    um.set_majors_minors(user_id, major, minor)
+    um.set_major_minor(user_id, major, minor)
     return "OK"
 
 @app.route('/users/bio', methods = ['POST'])
