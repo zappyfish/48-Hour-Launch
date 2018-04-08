@@ -16,7 +16,7 @@ class UserManager:
         self.firebase = pyrebase.initialize_app(self.config)
 
     def add_grade(self, user_id, major, course, grade):
-        self.firebase.database().child("users").child(user).child(major).child(course).set(grade)
+        self.firebase.database().child("users").child(user_id).child(major).child(course).set(grade)
 
     def get_user_info(self, user_id):
         return self.firebase.database().child("users").child(user_id).get().val()
