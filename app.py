@@ -59,6 +59,14 @@ def obtain_user_info():
         info=um.get_user_info(user_id)
     )
 
+@app.route('/users/major_minors', methods = ['POST'])
+def set_majors_minors():
+    user_id = request.form.get('user_id')
+    major = request.form.get('major')
+    minor = request.form.get('minor')
+    um.set_majors_minors(user_id, major, minor)
+    return "OK"
+
 @app.route('/users/bio', methods = ['POST'])
 def set_bio():
     user_id = request.form.get('user_id')
