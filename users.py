@@ -35,7 +35,7 @@ class UserManager:
         if (existing_user_id != None):
             return 0
         else:
-            user_id = time.time()
+            user_id = int(time.time())
             self.firebase.database().child("login_info").child(username).child("user_id").set(user_id)
             self.firebase.database().child("login_info").child(username).child("password").set(password)
             return user_id

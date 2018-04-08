@@ -54,7 +54,7 @@ def obtain_reviews():
 
 @app.route('/users/info', methods = ['GET'])
 def obtain_user_info():
-    user_id = float(request.args.get('user_id'))
+    user_id = request.args.get('user_id')
     return jsonify(
         info=um.get_user_info(user_id)
     )
